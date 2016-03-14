@@ -1,0 +1,11 @@
+#include "MULS_FIXP.inc"
+#include "MUL.inc"
+
+module MULS_FIXP{
+	MUL mul;
+
+	func exe{
+		rs = as ^ bs;
+		r = mul.exe(a,b)[34:16];
+	}
+}

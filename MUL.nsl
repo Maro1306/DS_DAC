@@ -1,0 +1,7 @@
+#include "MUL.inc"
+
+module MUL{
+	func exe{
+		return a * b;
+	}
+}
