@@ -20,8 +20,8 @@ module ADDS{
 		// 符号が違うとき
 		else{
 			// 負の値を補数変換して足し算
-			if(as)	add.exe(cc.exe(a),b);
-			else	add.exe(cc.exe(b),a);
+			if(as == MINUS)	add.exe(cc.exe(a),b);
+			else			add.exe(cc.exe(b),a);
 
 			// 足し算の結果が正のとき
 			if(add.carry){
