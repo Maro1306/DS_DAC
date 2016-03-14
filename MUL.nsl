@@ -2,6 +2,6 @@
 
 module MUL{
 	func exe{
-		return a * b;
+		r = a * b;
 	}
 }

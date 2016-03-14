@@ -3,9 +3,13 @@
 
 module MULS_FIXP{
 	MUL mul;
+	wire result[38];
 
 	func exe{
-		rs = as ^ bs;
-		r = mul.exe(a,b)[34:16];
+		result = mul.exe(a,b).r;
+		r = result[34:16];
+
+		if(result == 38'b0) rs = 0;
+		else rs = as ^ bs;
 	}
 }
