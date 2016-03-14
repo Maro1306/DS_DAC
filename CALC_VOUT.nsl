@@ -1,0 +1,25 @@
+#include "CALC_VOUT.inc"
+#include "ADDS.inc"
+#include "MULS_FIXP.inc"
+
+#define CVO_COEF	19'b000_0000000000001101	// 0.0002
+#define VCC			19'b011_0100110011001100	// 3.3
+#define GND			19'b000_0000000000000000	// 0
+#define PLUS		1'b0
+#define MINUS		1'b1
+
+module CALC_VOUT{
+	ADDS add1, add2;
+	MULS_FIXP mulf;
+
+	reg voreg[20] = 20'b0;
+	vo = voreg;
+
+	func exe{
+		add1.exe(PLUS, if(vi) VCC else GND, ~voreg[19], voreg[18:0]);
+		mulf.exe(PLUS, CVO_COEF, add1.rs, add1.r);
+		add2.exe(voreg[19], voreg[18:0], mulf.rs, mulf.r);
+
+		voreg := {PLUS, add2.r};
+	}
+}

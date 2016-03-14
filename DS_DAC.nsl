@@ -1,0 +1,14 @@
+#include "DS_DAC.inc"
+#include "CALC_TARGET.inc"
+#include "CALC_VOUT.inc"
+
+module DS_DAC{
+	CALC_TARGET ct;
+	CALC_VOUT cvo;
+
+	func exe{
+		ct.exe(targetd);
+		vi = if(cvo.vo < ct.targeta) 1 else 0;
+		cvo.exe(if(cvo.vo < ct.targeta) 1 else 0);
+	}
+}
