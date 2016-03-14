@@ -4,6 +4,9 @@
 #include <verilated.h>
 #include "debug/obj_dir/VADDS.h"
 
+#define PLUS	0
+#define MINUS	1
+
 using namespace std;
 
 VADDS *adds_i;
@@ -39,11 +42,13 @@ void rising_clock(){
 	adds_i->eval();
 }
 
-void exe_adds(int ain, int bin){
+void exe_adds(int asin, int ain, int bsin, int bin){
 	falling_clock();
 
 	// input
+	adds_i->as = asin;
 	adds_i->a = ain;
+	adds_i->bs = bsin;
 	adds_i->b = bin;
 	adds_i->exe = 1;
 	
@@ -58,9 +63,10 @@ int main(int argv,char *argc[]){
 
 	init();
 
-	exe_adds(100, 200);
-	exe_adds(1000, 2000);
-	exe_adds(100000, 200000);
+	exe_adds(PLUS, 100, PLUS, 200);
+	exe_adds(MINUS, 100, PLUS, 200);
+	exe_adds(PLUS, 100, MINUS, 200);
+	exe_adds(MINUS, 100, MINUS, 200);
 
 	return 0;
 }
