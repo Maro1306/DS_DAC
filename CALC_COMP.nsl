@@ -5,6 +5,6 @@ module CALC_COMP{
 	ADD add;
 
 	func exe{
-		return add.exe(~x,19'd1);
+		return add.exe(~x,19'd1).r;
 	}
 }

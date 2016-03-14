@@ -35,8 +35,8 @@ Q2SHOPT		= -fit "fast fit"
 CABLE		= "USB-Blaster"
 PMODE		= JTAG
 
-VERIOPT		= -LDFLAGS -lX11
-SRCS		= $(PROJECT).nsl RAM.nsl BINARY.nsl
+#VERIOPT		= -LDFLAGS -lX11
+SRCS		= ADD.nsl ADDS.nsl CALC_COMP.nsl 
 VFILES 		= $(SRCS:%.nsl=%.v) 
 LIBS		=
 RESULT		= result.txt

@@ -2,6 +2,6 @@
 
 module ADD{
 	func exe{
-		{carry,r} = a + b;
+		.{carry,r} = a + b;
 	}
 }

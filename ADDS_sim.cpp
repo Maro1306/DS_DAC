@@ -2,11 +2,11 @@
 #include <iostream>
 
 #include <verilated.h>
-#include "debug/obj_dir/VADDER.h"
+#include "debug/obj_dir/VADDS.h"
 
 using namespace std;
 
-VADDER *adder_i;
+VADDS *adds_i;
 
 unsigned long int pc;
 
@@ -15,52 +15,53 @@ double sc_time_stamp(){
 }
 
 void init(){
-	adder_i->m_clock=0;
-	adder_i->p_reset=0;
-	adder_i->eval();
-	adder_i->m_clock=1;
-	adder_i->p_reset=1;
-	adder_i->eval();
-	adder_i->m_clock=0;
-	adder_i->p_reset=0;
-	adder_i->eval();
+	adds_i->m_clock=0;
+	adds_i->p_reset=0;
+	adds_i->eval();
+	adds_i->m_clock=1;
+	adds_i->p_reset=1;
+	adds_i->eval();
+	adds_i->m_clock=0;
+	adds_i->p_reset=0;
+	adds_i->eval();
 	pc=0;
 }
 
 void falling_clock(){
-	adder_i->m_clock=0;
-	adder_i->p_reset=1;
-	adder_i->eval();
+	adds_i->m_clock=0;
+	adds_i->p_reset=1;
+	adds_i->eval();
 }
 
 void rising_clock(){
-	adder_i->m_clock=1;
+	adds_i->m_clock=1;
 	pc++;
-	adder_i->eval();
+	adds_i->eval();
+}
+
+void exe_adds(int ain, int bin){
+	falling_clock();
+
+	// input
+	adds_i->a = ain;
+	adds_i->b = bin;
+	adds_i->exe = 1;
+	
+	rising_clock();
+
+	// output
+	printf("%d %d\n", adds_i->rs, adds_i->r);
 }
 
 int main(int argv,char *argc[]){
-
-	int i = 0;
-	adder_i = new VADDER();
+	adds_i = new VADDS();
 
 	init();
 
-	while(i <= 0x5){
-		falling_clock();
+	exe_adds(100, 200);
+	exe_adds(1000, 2000);
+	exe_adds(100000, 200000);
 
-		//input
-		adder_i->a = i;
-		adder_i->b = i+1;
-		adder_i->exe = 1;
-
-		rising_clock();
-
-		//output
-		printf("%d %d\n", adder_i->c, adder_i->s);
-
-		i++;
-	}
 	return 0;
 }
 
