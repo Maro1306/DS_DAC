@@ -1,0 +1,10 @@
+#include "CALC_COMP.inc"
+#include "ADD.inc"
+
+module CALC_COMP{
+	ADD add;
+
+	func exe{
+		return add.exe(~x,19'd1);
+	}
+}
