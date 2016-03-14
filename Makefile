@@ -36,7 +36,7 @@ CABLE		= "USB-Blaster"
 PMODE		= JTAG
 
 #VERIOPT		= -LDFLAGS -lX11
-SRCS		= ADD.nsl ADDS.nsl CALC_COMP.nsl 
+SRCS		= ADD.nsl ADDS.nsl CALC_COMP.nsl CALC_TARGET.nsl CALC_VOUT.nsl DS_DAC.nsl MUL.nsl MULS_FIXP.nsl
 VFILES 		= $(SRCS:%.nsl=%.v) 
 LIBS		=
 RESULT		= result.txt
