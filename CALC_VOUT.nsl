@@ -12,14 +12,25 @@ module CALC_VOUT{
 	ADDS add1, add2;
 	MULS_FIXP mulf;
 
-	reg voreg[20] = 20'b0;
-	vo = voreg;
+	reg voreg[20];
+	reg flag = 1;
 
 	func exe{
-		add1.exe(PLUS, if(vi) VCC else GND, ~voreg[19], voreg[18:0]);
-		mulf.exe(PLUS, CVO_COEF, add1.rs, add1.r);
-		add2.exe(voreg[19], voreg[18:0], mulf.rs, mulf.r);
+		if(flag){
+			vo = 20'b0;
+			mulf.exe(PLUS, CVO_COEF, PLUS, if(vi) VCC else GND);
+			voreg := {mulf.rs, mulf.r};
+			flag := 0;
+		}
+		else{
+			vo = voreg;
 
-		voreg := {PLUS, add2.r};
+			add1.exe(PLUS, if(vi) VCC else GND, ~voreg[19], voreg[18:0]);
+			mulf.exe(PLUS, CVO_COEF, add1.rs, add1.r);
+			add2.exe(voreg[19], voreg[18:0], mulf.rs, mulf.r);
+			voreg := {add2.rs, add2.r};
+		}
+
+//		voreg := {PLUS, add2.r};
 	}
 }

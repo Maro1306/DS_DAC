@@ -9,31 +9,29 @@ module ADDS{
 	ADD add;
 	CALC_COMP cc,ccr;
 
-	func exe{
+	func exe alt{
+		// ±0 + ±0 = +0
+		(a == 19'b0) && (b == 19'b0):	.{rs, r} = {PLUS, 19'b0};
+		// 0 + b = b, a + 0 = a
+		a == 19'b0:						.{rs, r} = {bs, b};
+		b == 19'b0:						.{rs, r} = {as, a};
+
+
 		// 符号が同じとき
-		if(as == bs){
+		as == bs:{
 			// 符号そのままで絶対値同士足し算
 			rs = as;
 			r = add.exe(a,b).r;
 		}
 
 		// 符号が違うとき
-		else{
+		else:{
 			// 負の値を補数変換して足し算
 			if(as == MINUS)	add.exe(cc.exe(a),b);
 			else			add.exe(cc.exe(b),a);
 
-			// 足し算の結果が正のとき
-			if(add.carry){
-				rs = PLUS;
-				r = add.r;
-			}
-			// 足し算の結果が負のとき
-			else{
-				// 再度補数変換して絶対値を取得
-				rs = MINUS;
-				r = ccr.exe(add.r);
-			}
+			rs = if(add.carry) PLUS else MINUS;
+			r = if(add.carry) add.r else ccr.exe(add.r);
 		}
 	}
 }
