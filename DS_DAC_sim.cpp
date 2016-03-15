@@ -62,7 +62,7 @@ int main(int argv,char *argc[]){
 
 		printf("%d ", dac_i->targetd);
 		printf("%x ", dac_i->v__DOT___ct_targeta);
-		printf("%d %x\n", dac_i->vi, dac_i->v__DOT__cvo__DOT__voreg);
+		printf("%d %x\n", dac_i->vi, dac_i->v__DOT___cvo_vo);
 	}
 
 	return 0;

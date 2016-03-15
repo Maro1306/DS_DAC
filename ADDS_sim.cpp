@@ -63,10 +63,15 @@ int main(int argv,char *argc[]){
 
 	init();
 
-	exe_adds(PLUS, 100, PLUS, 200);
-	exe_adds(MINUS, 100, PLUS, 200);
-	exe_adds(PLUS, 100, MINUS, 200);
-	exe_adds(MINUS, 100, MINUS, 200);
+	exe_adds(PLUS, 0, PLUS, 0);
+	exe_adds(MINUS, 0, PLUS, 0);
+	exe_adds(PLUS, 0, MINUS, 0);
+	exe_adds(MINUS, 0, MINUS, 0);
+
+	exe_adds(PLUS, 10, PLUS, 0);
+	exe_adds(MINUS, 10, PLUS, 0);
+	exe_adds(PLUS, 10, MINUS, 0);
+	exe_adds(MINUS, 10, MINUS, 0);
 
 	return 0;
 }

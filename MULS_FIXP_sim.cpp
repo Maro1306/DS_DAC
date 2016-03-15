@@ -55,7 +55,7 @@ void exe_mulf(int asin, int ain, int bsin, int bin){
 	rising_clock();
 
 	// output
-	printf("%d %d\n", mulf_i->rs, mulf_i->r);
+	printf("%d %x\n", mulf_i->rs, mulf_i->r);
 }
 
 int main(int argv,char *argc[]){
@@ -63,10 +63,15 @@ int main(int argv,char *argc[]){
 
 	init();
 
-	exe_mulf(PLUS, 100, PLUS, 200);
-	exe_mulf(MINUS, 100, PLUS, 200);
-	exe_mulf(PLUS, 100, MINUS, 200);
-	exe_mulf(MINUS, 100, MINUS, 200);
+	exe_mulf(PLUS, 0x10000, PLUS, 0x20000);
+	exe_mulf(MINUS, 0x10000, PLUS, 0x20000);
+	exe_mulf(PLUS, 0x10000, MINUS, 0x20000);
+	exe_mulf(MINUS, 0x10000, MINUS, 0x20000);
+	exe_mulf(PLUS, 100, PLUS, 0);
+	exe_mulf(MINUS, 100, PLUS, 0);
+	exe_mulf(PLUS, 100, MINUS, 0);
+	exe_mulf(MINUS, 100, MINUS, 0);
+
 
 	return 0;
 }
