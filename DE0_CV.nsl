@@ -1,0 +1,12 @@
+#include "DS_DAC.inc"
+
+declare DE0_CV{
+	input	SW[4];
+	output	GPIO_0[1];
+}
+
+module DE0_CV{
+	DS_DAC dac;
+
+	GPIO_0 = dac.exe(SW).vi;
+}
