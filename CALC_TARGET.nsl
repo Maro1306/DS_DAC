@@ -1,18 +1,13 @@
 #include "CALC_TARGET.inc"
+#include "MUL.inc"
 
 #define CT_COEF	19'b000_0011_1000_0101_0001
 
 module CALC_TARGET{
-	wire w0[19], w1[19], w2[19], w3[19];
+	MUL mul;
 
 	func exe{
-		any{
-			targetd[0]: w0 = CT_COEF;
-			targetd[1]:	w1 = CT_COEF << 1;
-			targetd[2]: w2 = CT_COEF << 2;
-			targetd[3]: w3 = CT_COEF << 3;
-		}
-
-		targeta = {1'b0, w0+w1+w2+w3};
+		mul.exe(CT_COEF, {15'b0,targetd});
+		targeta = {1'b0, mul.r[18:0]};
 	}
 }
