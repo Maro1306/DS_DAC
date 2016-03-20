@@ -1,30 +1,7 @@
 #include "ADD.inc"
-#include "CLA4.inc"
 
 module ADD{
-	CLA4 cla[5];
-	variable rv[20];
-	variable cv[4];
-
 	func exe{
-		cla[0].exe(a[3:0],   b[3:0]);
-		cla[1].exe(a[7:4],   b[7:4]);
-		cla[2].exe(a[11:8],  b[11:8]);
-		cla[3].exe(a[15:12], b[15:12]);
-		cla[4].exe({1'b0,a[18:16]}, {1'b0,b[18:16]});
-
-		cv[0] = cla[0].c0;
-		cv[1] = cla[1].c0 | cla[0].c0&cla[1].c1;
-		cv[2] = cla[2].c0 | cla[1].c0&cla[2].c1 | cla[0].c0&cla[1].c1&cla[2].c1;
-		cv[3] = cla[3].c0 | cla[2].c0&cla[3].c1 | cla[1].c0&cla[2].c1&cla[3].c1
-		                  | cla[0].c0&cla[1].c1&cla[2].c1&cla[3].c1;	
-
-		rv[3:0]   = cla[0].r0;
-		rv[7:4]   = if(cv[0]) cla[1].r1 else cla[1].r0;
-		rv[11:8]  = if(cv[1]) cla[2].r1 else cla[2].r0;
-		rv[15:12] = if(cv[2]) cla[3].r1 else cla[3].r0;
-		rv[19:16] = if(cv[3]) cla[4].r1 else cla[4].r0;
-
-		.{carry,r} = rv;
+		.{carry,r} = a + b;
 	}
 }

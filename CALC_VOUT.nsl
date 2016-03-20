@@ -24,7 +24,7 @@ module CALC_VOUT{
 		voreg := {add.rs, add.r};
 
 //		add1.exe(PLUS, if(vi) VCC else GND, ~voreg[19], voreg[18:0]);
-//		mulf.exe(PLUS, CVO_COEF, add1.rs, add1.r);
+//		mulf.exe(PLUS, CVO_COEF2, add1.rs, add1.r);
 //		add2.exe(voreg[19], voreg[18:0], mulf.rs, mulf.r);
 //		voreg := {add2.rs, add2.r};
 	}
