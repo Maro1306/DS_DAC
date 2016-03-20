@@ -1,0 +1,33 @@
+#include "CLA4.inc"
+#include "CLU4.inc"
+
+module CLA4{
+	CLU4 clu[2];
+	wire har[4];
+	variable rv0[4], rv1[4];
+
+	func exe{
+		har = a ^ b;	// 各ビットの半加算
+
+		clu[0].exe(a,b,1'b0);
+		clu[1].exe(a,b,1'b1);
+
+		// キャリーなし
+		rv0[0] = har[0] ^ 1'b0;
+		rv0[1] = har[1] ^ clu[0].c[0];
+		rv0[2] = har[2] ^ clu[0].c[1];
+		rv0[3] = har[3] ^ clu[0].c[2];
+		c0    =           clu[0].c[3];
+
+		r0 = rv0;
+
+		// キャリーあり
+		rv1[0] = har[0] ^ 1'b1;
+		rv1[1] = har[1] ^ clu[1].c[0];
+		rv1[2] = har[2] ^ clu[1].c[1];
+		rv1[3] = har[3] ^ clu[1].c[2];
+		c1    =           clu[1].c[3];
+
+		r1 = rv1;
+	}
+}

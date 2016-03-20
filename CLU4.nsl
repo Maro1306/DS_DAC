@@ -1,0 +1,19 @@
+#include "CLU4.inc"
+
+module CLU4{
+	wire p[4];
+	wire g[4];
+	variable cv[4];
+
+	func exe{
+		p = a ^ b;
+		g = a & b;
+		
+		cv[0] = g[0] | p[0]&carry;
+		cv[1] = g[1] | p[1]&g[0] | p[1]&p[0]&carry;
+		cv[2] = g[2] | p[2]&g[1] | p[2]&p[1]&g[0] | p[2]&p[1]&p[0]&carry;
+		cv[3] = g[3] | p[3]&g[2] | p[3]&p[2]&g[1] | p[3]&p[2]&p[1]&g[0] | (&p)&carry;
+
+		c = cv;
+	}
+}
