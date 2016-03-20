@@ -54,7 +54,7 @@ int main(int argv,char *argc[]){
 		rising_clock();
 	}
 
-	for(i=5000 ; i<6000 ; i++){
+	for(i=5000 ; i<7000 ; i++){
 		falling_clock();
 		dac_i->targetd = TARGET;
 		dac_i->exe = 1;
