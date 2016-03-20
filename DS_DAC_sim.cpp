@@ -47,16 +47,14 @@ int main(int argv,char *argc[]){
 
 	init();
 
-	/*
 	for(i=0 ; i<5000 ; i++){
 		falling_clock();
 		dac_i->targetd = TARGET;
 		dac_i->exe = 1;
 		rising_clock();
 	}
-	*/
 
-	for(i=0 ; i<100 ; i++){
+	for(i=5000 ; i<6000 ; i++){
 		falling_clock();
 		dac_i->targetd = TARGET;
 		dac_i->exe = 1;
