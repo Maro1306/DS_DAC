@@ -3,10 +3,10 @@
 #include "ADDS.inc"
 #include "MULS_FIXP.inc"
 
-#define CVO_COEF1	20'b000_11111111111100101	// 0.9998(=1-0.0002)
-#define CVO_COEF2	20'b000_00000000000011010	// 0.0002
-#define VCC			20'b011_01001100110011001	// 3.3
-#define GND			20'b000_00000000000000000	// 0
+#define COEF1	20'b000_11111111111100101	// 0.9998(=1-0.0002)
+#define COEF2	20'b000_00000000000011010	// 0.0002
+#define VCC		20'b011_01001100110011001	// 3.3
+#define GND		20'b000_00000000000000000	// 0
 
 module CALC_VOUT{
 	ADDS add;
@@ -16,10 +16,10 @@ module CALC_VOUT{
 	reg voreg[BWIDTH] = GND;
 
 	func exe{
-		vo = {voregs, voreg};
+		.{vos, vo} = {voregs, voreg};
 
-		mulf1.exe(PLUS, CVO_COEF1, voregs, voreg);
-		mulf2.exe(PLUS, CVO_COEF2, PLUS, if(vi) VCC else GND);
+		mulf1.exe(PLUS, COEF1, voregs, voreg);
+		mulf2.exe(PLUS, COEF2, PLUS, if(vi) VCC else GND);
 		add.exe(mulf1.rs, mulf1.r, mulf2.rs, mulf2.r);
 		.{voregs, voreg} := {add.rs, add.r};
 	}

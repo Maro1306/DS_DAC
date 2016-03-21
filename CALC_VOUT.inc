@@ -1,5 +1,6 @@
 declare CALC_VOUT{
 	input	vi;
-	output	vo[BWIDTH+1];
+	output	vos;
+	output	vo[BWIDTH];
 	func_in	exe(vi);
 }
