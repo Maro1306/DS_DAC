@@ -1,5 +1,5 @@
 declare CALC_TARGET{
-	input	targetd[4];
-	output	targeta[BWIDTH+1];
+	input	targetd[RESO];
+	output	targeta[BWIDTH];
 	func_in	exe(targetd);
 }

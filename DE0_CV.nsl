@@ -1,8 +1,9 @@
+#include "constant.h"
 #include "DS_DAC.inc"
 
 declare DE0_CV{
-	input	SW[4];
-	output	GPIO_0[1];
+	input	SW[RESO];
+	output	GPIO_0;
 }
 
 module DE0_CV{

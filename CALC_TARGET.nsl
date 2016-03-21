@@ -2,13 +2,13 @@
 #include "CALC_TARGET.inc"
 #include "MUL.inc"
 
-#define CT_COEF	20'b000_0011_1000_0101_0001_1	// 0.22
+#define COEF	20'b000_0011_1000_0101_0001_1	// 0.22
 
 module CALC_TARGET{
 	MUL mul;
 
 	func exe{
-		mul.exe(CT_COEF, (BWIDTH)'(targetd));
-		targeta = {1'b0, mul.r[BWIDTH-1:0]};
+		mul.exe(COEF, (BWIDTH)'(targetd));
+		targeta = mul.r[BWIDTH-1:0];
 	}
 }

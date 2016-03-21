@@ -1,5 +1,5 @@
 declare DS_DAC{
-	input	targetd[4];
+	input	targetd[RESO];
 	output	vi;
 	func_in	exe(targetd):vi;
 }
