@@ -1,15 +1,19 @@
+#include "constant.h"
 #include "MULS_FIXP.inc"
 #include "MUL.inc"
 
+#define CUT_BEGIN	36
+#define CUT_END		17
+
 module MULS_FIXP{
 	MUL mul;
-	wire result[38];
+	wire result[BWIDTH*2];
 
 	func exe{
 		result = mul.exe(a,b).r;
-		r = result[34:16];
+		r = result[CUT_BEGIN:CUT_END];
 
-		if(result == 38'b0) rs = 0;
+		if(result == (BWIDTH*2)'b0) rs = 0;
 		else rs = as ^ bs;
 	}
 }

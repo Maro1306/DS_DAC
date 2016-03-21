@@ -1,3 +1,4 @@
+#include "constant.h"
 #include "DS_DAC.inc"
 #include "CALC_TARGET.inc"
 #include "CALC_VOUT.inc"

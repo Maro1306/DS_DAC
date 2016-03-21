@@ -1,9 +1,9 @@
 declare ADDS{
 	input	as;
-	input	a[19];
+	input	a[BWIDTH];
 	input	bs;
-	input	b[19];
+	input	b[BWIDTH];
 	output	rs;
-	output 	r[19];
+	output 	r[BWIDTH];
 	func_in	exe(as,a,bs,b);
 }

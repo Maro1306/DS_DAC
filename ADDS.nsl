@@ -1,9 +1,7 @@
+#include "constant.h"
 #include "ADDS.inc"
 #include "ADD.inc"
 #include "CALC_COMP.inc"
-
-#define PLUS	1'b0
-#define MINUS	1'b1
 
 module ADDS{
 	ADD add;
@@ -11,10 +9,10 @@ module ADDS{
 
 	func exe alt{
 		// ±0 + ±0 = +0
-		(a == 19'b0) && (b == 19'b0):	.{rs, r} = {PLUS, 19'b0};
+		(a == (BWIDTH)'b0) && (b == (BWIDTH)'b0): .{rs, r} = {PLUS, (BWIDTH)'b0};
 		// 0 + b = b, a + 0 = a
-		a == 19'b0:						.{rs, r} = {bs, b};
-		b == 19'b0:						.{rs, r} = {as, a};
+		a == (BWIDTH)'b0: .{rs, r} = {bs, b};
+		b == (BWIDTH)'b0:	.{rs, r} = {as, a};
 
 
 		// 符号が同じとき

@@ -1,6 +1,6 @@
 declare MUL{
-	input	a[19];
-	input	b[19];
-	output	r[38];
+	input	a[BWIDTH];
+	input	b[BWIDTH];
+	output	r[BWIDTH*2];
 	func_in	exe(a,b);
 }

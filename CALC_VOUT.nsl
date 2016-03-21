@@ -1,31 +1,26 @@
+#include "constant.h"
 #include "CALC_VOUT.inc"
 #include "ADDS.inc"
 #include "MULS_FIXP.inc"
 
-#define CVO_COEF1	19'b000_1111111111110010	// 0.9998(=1-0.0002)
-#define CVO_COEF2	19'b000_0000000000001101	// 0.0002
-#define VCC			19'b011_0100110011001100	// 3.3
-#define GND			19'b000_0000000000000000	// 0
-#define PLUS		1'b0
-#define MINUS		1'b1
+#define CVO_COEF1	20'b000_11111111111100101	// 0.9998(=1-0.0002)
+#define CVO_COEF2	20'b000_00000000000011010	// 0.0002
+#define VCC			20'b011_01001100110011001	// 3.3
+#define GND			20'b000_00000000000000000	// 0
 
 module CALC_VOUT{
 	ADDS add;
 	MULS_FIXP mulf1, mulf2;
 
-	reg voreg[20] = 20'b0;
+	reg voregs = PLUS;
+	reg voreg[BWIDTH] = GND;
 
 	func exe{
-		vo = voreg;
+		vo = {voregs, voreg};
 
-		mulf1.exe(PLUS, CVO_COEF1, voreg[19], voreg[18:0]);
+		mulf1.exe(PLUS, CVO_COEF1, voregs, voreg);
 		mulf2.exe(PLUS, CVO_COEF2, PLUS, if(vi) VCC else GND);
 		add.exe(mulf1.rs, mulf1.r, mulf2.rs, mulf2.r);
-		voreg := {add.rs, add.r};
-
-//		add1.exe(PLUS, if(vi) VCC else GND, ~voreg[19], voreg[18:0]);
-//		mulf.exe(PLUS, CVO_COEF2, add1.rs, add1.r);
-//		add2.exe(voreg[19], voreg[18:0], mulf.rs, mulf.r);
-//		voreg := {add2.rs, add2.r};
+		.{voregs, voreg} := {add.rs, add.r};
 	}
 }

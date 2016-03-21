@@ -1,5 +1,5 @@
 declare CALC_COMP{
-	input	x[19];
-	output	y[19];
+	input	x[BWIDTH];
+	output	y[BWIDTH];
 	func_in	exe(x):y;
 }
