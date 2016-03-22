@@ -3,11 +3,11 @@
 
 declare DE0_CV{
 	input	SW[RESO];
-	output	GPIO_0;
+	output	GPIO_0_0;
 }
 
 module DE0_CV{
 	DS_DAC dac;
 
-	GPIO_0 = dac.exe(SW).vi;
+	GPIO_0_0 = dac.exe(SW).vi;
 }

@@ -104,7 +104,7 @@ set_location_assignment PIN_U12 -to DRAM_LDQM
 set_location_assignment PIN_AB6 -to DRAM_RAS_N
 set_location_assignment PIN_N8 -to DRAM_UDQM
 set_location_assignment PIN_AB5 -to DRAM_WE_N
-set_location_assignment PIN_N16 -to GPIO_0[0]
+set_location_assignment PIN_N16 -to GPIO_0_0
 set_location_assignment PIN_B16 -to GPIO_0[1]
 set_location_assignment PIN_M16 -to GPIO_0[2]
 set_location_assignment PIN_C16 -to GPIO_0[3]
