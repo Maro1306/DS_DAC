@@ -21,6 +21,8 @@ module CALC_VOUT{
 		mulf1.exe(PLUS, COEF1, voregs, voreg);
 		mulf2.exe(PLUS, COEF2, PLUS, if(vi) VCC else GND);
 		add.exe(mulf1.rs, mulf1.r, mulf2.rs, mulf2.r);
-		.{voregs, voreg} := {add.rs, add.r};
+
+		if(add.rs == MINUS) .{voregs, voreg} := {PLUS, (BWIDTH)'b0};
+		else .{voregs, voreg} := {add.rs, add.r};
 	}
 }

@@ -7,13 +7,13 @@
 
 module MULS_FIXP{
 	MUL mul;
-	wire result[BWIDTH*2];
+	wire result[BWIDTH+BWIDTH];
 
 	func exe{
 		result = mul.exe(a,b).r;
 		r = result[CUT_BEGIN:CUT_END];
 
-		if(result == (BWIDTH*2)'b0) rs = 0;
+		if(result == (BWIDTH+BWIDTH)'b0) rs = 0;
 		else rs = as ^ bs;
 	}
 }

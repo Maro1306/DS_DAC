@@ -5,7 +5,7 @@
 #include <verilated.h>
 #include "debug/obj_dir/VDS_DAC.h"
 
-#define TARGET	10
+#define TARGET	2
 
 using namespace std;
 
@@ -60,14 +60,12 @@ int main(int argv,char *argc[]){
 
 	init();
 
-	
 	for(i=0 ; i<5000 ; i++){
 		falling_clock();
 		dac_i->targetd = TARGET;
 		dac_i->exe = 1;
 		rising_clock();
 	}
-	
 
 	for(i=5000 ; i<6000 ; i++){
 		falling_clock();
