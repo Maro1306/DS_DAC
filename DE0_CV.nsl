@@ -1,13 +1,16 @@
 #include "constant.h"
+#include "PLAYTONE_ST.inc"
 #include "DS_DAC.inc"
 
 declare DE0_CV{
-	input	SW[RESO];
+	input	SW[3];
 	output	GPIO_0_0;
 }
 
 module DE0_CV{
+	PLAYTONE_ST ptst;
 	DS_DAC dac;
 
-	GPIO_0_0 = dac.exe(SW).vi;
+	ptst.play(SW);
+	GPIO_0_0 = dac.exe(ptst.vd).vi;
 }
