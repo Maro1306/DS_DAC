@@ -5,14 +5,14 @@
 module PLAYTONE_ST{
 	SOUND_CNT sc;
 
-	reg count[13] = 13'b1;
+	reg count[14] = 14'b1;
 	reg outdata[4] = 4'b0;
 
 	func play{
 		vd = outdata;
 
 		if(count == sc.endcnt(tone)){
-			count := 13'b1;
+			count := 14'b1;
 			if(outdata == 4'hF) outdata := 4'h0;
 			else                outdata++;
 		}
