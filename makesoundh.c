@@ -29,13 +29,13 @@ int main(void){
 	fprintf(fp, "#define LA	3'd5\n");
 	fprintf(fp, "#define TI	3'd6\n\n");
 
-	fprintf(fp, "#define CYCLE_DO	13'd%d\n", roundOff(sound_do));
-	fprintf(fp, "#define CYCLE_RE	13'd%d\n", roundOff(sound_re));
-	fprintf(fp, "#define CYCLE_MI	13'd%d\n", roundOff(sound_mi));
-	fprintf(fp, "#define CYCLE_FA	13'd%d\n", roundOff(sound_fa));
-	fprintf(fp, "#define CYCLE_SO	13'd%d\n", roundOff(sound_so));
-	fprintf(fp, "#define CYCLE_LA	13'd%d\n", roundOff(sound_la));
-	fprintf(fp, "#define CYCLE_TI	13'd%d\n", roundOff(sound_ti));
+	fprintf(fp, "#define CYCLE_DO	14'd%d\n", roundOff(sound_do));
+	fprintf(fp, "#define CYCLE_RE	14'd%d\n", roundOff(sound_re));
+	fprintf(fp, "#define CYCLE_MI	14'd%d\n", roundOff(sound_mi));
+	fprintf(fp, "#define CYCLE_FA	14'd%d\n", roundOff(sound_fa));
+	fprintf(fp, "#define CYCLE_SO	14'd%d\n", roundOff(sound_so));
+	fprintf(fp, "#define CYCLE_LA	14'd%d\n", roundOff(sound_la));
+	fprintf(fp, "#define CYCLE_TI	14'd%d\n", roundOff(sound_ti));
 
 	fclose(fp);
 
