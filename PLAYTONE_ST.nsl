@@ -1,0 +1,21 @@
+#include "sound.h"
+#include "PLAYTONE_ST.inc"
+#include "SOUND_CNT.inc"
+
+module PLAYTONE_ST{
+	SOUND_CNT sc;
+
+	reg count[13] = 13'b1;
+	reg outdata[4] = 4'b0;
+
+	func play{
+		vd = outdata;
+
+		if(count == sc.endcnt(tone)){
+			count := 13'b1;
+			if(outdata == 4'hF) outdata := 4'h0;
+			else                outdata++;
+		}
+		else count++;
+	}
+}

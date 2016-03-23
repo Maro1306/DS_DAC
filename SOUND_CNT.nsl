@@ -1,0 +1,14 @@
+#include "sound.h"
+#include "SOUND_CNT.inc"
+
+module SOUND_CNT{
+	func endcnt any{
+		tone == DO: return CYCLE_DO;
+		tone == RE: return CYCLE_RE;
+		tone == MI: return CYCLE_MI;
+		tone == FA: return CYCLE_FA;
+		tone == SO: return CYCLE_SO;
+		tone == LA: return CYCLE_LA;
+		tone == TI: return CYCLE_TI;
+	}
+}
