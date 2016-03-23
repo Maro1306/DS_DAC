@@ -1,6 +1,6 @@
 #include "constant.h"
 #include "CALC_VOUT.inc"
-#include "ADDS.inc"
+#include "ADDSUB.inc"
 #include "MULS_FIXP.inc"
 
 #define COEF1	20'b000_11111111111100101	// 0.9998(=1-0.0002)
@@ -9,7 +9,7 @@
 #define GND		20'b000_00000000000000000	// 0
 
 module CALC_VOUT{
-	ADDS add;
+	ADDSUB as;
 	MULS_FIXP mulf1, mulf2;
 
 	reg voregs = PLUS;
@@ -20,9 +20,9 @@ module CALC_VOUT{
 
 		mulf1.exe(PLUS, COEF1, voregs, voreg);
 		mulf2.exe(PLUS, COEF2, PLUS, if(vi) VCC else GND);
-		add.exe(mulf1.rs, mulf1.r, mulf2.rs, mulf2.r);
+		as.exe(mulf1.rs, mulf1.r, mulf2.rs, mulf2.r);
 
-		if(add.rs == MINUS) .{voregs, voreg} := {PLUS, (BWIDTH)'b0};
-		else .{voregs, voreg} := {add.rs, add.r};
+		if(as.rs == MINUS) .{voregs, voreg} := {PLUS, (BWIDTH)'b0};
+		else .{voregs, voreg} := {as.rs, as.r};
 	}
 }

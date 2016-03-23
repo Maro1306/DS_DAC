@@ -1,0 +1,8 @@
+#include "constant.h"
+#include "SUB.inc"
+
+module SUB{
+	func exe{
+		r = a - b;
+	}
+}

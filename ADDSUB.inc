@@ -1,4 +1,4 @@
-declare ADDS{
+declare ADDSUB{
 	input	as;
 	input	a[BWIDTH];
 	input	bs;
