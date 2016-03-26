@@ -1,6 +1,6 @@
 declare SUB{
-	input	a[BWIDTH];
-	input	b[BWIDTH];
-	output	r[BWIDTH];
+	input	a[WIDTH];
+	input	b[WIDTH];
+	output	r[WIDTH];
 	func_in	exe(a,b);
 }

@@ -3,26 +3,21 @@
 #include "ADDSUB.inc"
 #include "MULS_FIXP.inc"
 
-#define COEF1	20'b000_11111111111100101	// 0.9998(=1-0.0002)
-#define COEF2	20'b000_00000000000011010	// 0.0002
-#define VCC		20'b011_01001100110011001	// 3.3
-#define GND		20'b000_00000000000000000	// 0
-
 module CALC_VOUT{
 	ADDSUB as;
 	MULS_FIXP mulf1, mulf2;
 
 	reg voregs = PLUS;
-	reg voreg[BWIDTH] = GND;
+	reg voreg[WIDTH] = GND;
 
 	func exe{
 		.{vos, vo} = {voregs, voreg};
 
-		mulf1.exe(PLUS, COEF1, voregs, voreg);
-		mulf2.exe(PLUS, COEF2, PLUS, if(vi) VCC else GND);
+		mulf1.exe(PLUS, COEF_CV2, voregs, voreg);
+		mulf2.exe(PLUS, COEF_CV1, PLUS, if(vi) VCC else GND);
 		as.exe(mulf1.rs, mulf1.r, mulf2.rs, mulf2.r);
 
-		if(as.rs == MINUS) .{voregs, voreg} := {PLUS, (BWIDTH)'b0};
+		if(as.rs == MINUS) .{voregs, voreg} := {PLUS, (WIDTH)'b0};
 		else .{voregs, voreg} := {as.rs, as.r};
 	}
 }

@@ -1,6 +1,17 @@
-#define IWIDTH	3
-#define DWIDTH	17
-#define BWIDTH	IWIDTH+DWIDTH
-#define RESO	4
-#define PLUS	1'b0
-#define MINUS	1'b1
+#define IWIDTH		3
+#define DWIDTH		17
+#define WIDTH		20
+#define RESO		4
+
+#define PLUS		1'b0
+#define MINUS		1'b1
+
+#define CUT_BEGIN	36
+#define CUT_END		17
+
+#define VCC			20'b01101001100110011001	// 3.300000
+#define GND			20'b00000000000000000000	// 0.000000
+
+#define COEF_CT		20'b00000111000010100011	// 0.220000
+#define COEF_CV1	20'b00000000000000011010	// 0.000200
+#define COEF_CV2	20'b00011111111111100101	// 0.999800

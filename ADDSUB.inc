@@ -1,9 +1,9 @@
 declare ADDSUB{
 	input	as;
-	input	a[BWIDTH];
+	input	a[WIDTH];
 	input	bs;
-	input	b[BWIDTH];
+	input	b[WIDTH];
 	output	rs;
-	output 	r[BWIDTH];
+	output 	r[WIDTH];
 	func_in	exe(as,a,bs,b);
 }
