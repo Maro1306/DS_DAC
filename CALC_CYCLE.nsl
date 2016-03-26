@@ -1,7 +1,7 @@
 #include "sound.h"
-#include "SOUND_CNT.inc"
+#include "CALC_CYCLE.inc"
 
-module SOUND_CNT{
+module CALC_CYCLE{
 	func endcnt any{
 		tone == DO: return CYCLE_DO;
 		tone == RE: return CYCLE_RE;
