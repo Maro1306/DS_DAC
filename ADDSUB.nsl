@@ -10,15 +10,14 @@ module ADDSUB{
 	func exe{
 		if(as == bs){
 			add.exe(a,b);
-			if(add.r == (BWIDTH)'b0) .{rs,r} = {PLUS, (BWIDTH)'b0};
-			else					.{rs,r} = {as,   add.r};
+			.{rs,r} = {if(!add.r) PLUS else as, add.r};
 		}
 		else{
 			any{
-				(as == PLUS) & (a < b):		.{rs,r} = {MINUS,sub.exe(b,a).r};
-				(as == PLUS) & (a >= b):	.{rs,r} = {PLUS, sub.exe(a,b).r};
-				(bs == PLUS) & (a <= b):	.{rs,r} = {PLUS, sub.exe(b,a).r};
-				(bs == PLUS) & (a > b):		.{rs,r} = {MINUS,sub.exe(a,b).r};
+				(as == PLUS)  & (a < b):  .{rs,r} = {MINUS,sub.exe(b,a).r};
+				(as == PLUS)  & (a >= b): .{rs,r} = {PLUS, sub.exe(a,b).r};
+				(as == MINUS) & (a <= b): .{rs,r} = {PLUS, sub.exe(b,a).r};
+				(as == MINUS) & (a > b):  .{rs,r} = {MINUS,sub.exe(a,b).r};
 			}
 		}
 	}
